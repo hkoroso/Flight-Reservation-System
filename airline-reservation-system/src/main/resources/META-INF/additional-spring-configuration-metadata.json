@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "app.cronJob.time",
+      "type": "java.lang.String",
+      "description": "Description for app.cronJob.time."
+  }
+] }

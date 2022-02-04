@@ -1,0 +1,9 @@
+.container{
+    background-image: url(./assets/plane.jpg);
+    width:'20%';
+    height:'200px'
+}
+body, html {
+    height: 100%;
+    margin: 0;
+}

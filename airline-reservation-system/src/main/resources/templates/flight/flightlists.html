@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Reservation System</title>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- custom css file link  -->
+    <link th:href="@{/flight_assets/styles.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+<!-- header section starts  -->
+
+<header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo">E<span>AST AIRWAYS</span></a>
+
+    <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="/bookflights">Book Flight</a>
+        <a href="/flights/list">Available Flights</a>
+        <a href="#contact">Contact Us</a>
+
+    </nav>
+
+    <div class="icons">
+        <i class="fas fa-search" id="search-btn"></i>
+        <i class="fas fa-user" id="login-btn"></i>
+    </div>
+
+    <form action="" class="search-bar-container">
+        <input type="search" id="search-bar" placeholder="search here...">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- login form container  -->
+
+<div class="login-form-container">
+
+    <i class="fas fa-times" id="form-close"></i>
+
+    <form action="">
+        <h3>login</h3>
+        <input type="email" class="box" placeholder="enter your email">
+        <input type="password" class="box" placeholder="enter your password">
+        <input type="submit" value="login now" class="btn">
+        <input type="checkbox" id="remember">
+        <label for="remember">remember me</label>
+        <p>forget password? <a href="#">click here</a></p>
+        <p>don't have and account? <a href="/registration-form/index.html">register now</a></p>
+    </form>
+
+</div>
+<!--Image craosel starts-->
+
+<div class="container">
+    <div class="row pt-1 pb-1">
+        <div class="col-lg-12">
+            <h4 class="text-center">Carousel with Three input search</h4>
+            <h6 class="text-center">awesome responsive image slider with a search bar</h6>
+        </div>
+    </div>
+</div>
+<section>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://pbs.twimg.com/media/EGHYvttU4AAYKb7?format=jpg&name=large" class="d-block w-100"
+                     alt="...">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+
+<div style="margin-top:15px;margin-bottom:1em;" class="container">
+    <div class="flight-engine">
+        <div class="container">
+            <div class="tabing">
+                <ul>
+                    <li><a class="active" href="#1"><i class="fa fa-plane" aria-hidden="true"></i> Flight</a>
+                    </li>
+                    <li><a href="#2"><i class="fa fa-plane" aria-hidden="true"></i> Flight</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <form id="searchFlight" method="get" action="/searchFlight">
+                        <div id="1" class="tab1 active">
+                            <div class="flight-tab row">
+                               <div class="persent-one less-per">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <input type="text" name="searchString" class="textboxstyle" id="searchString"
+                                           placeholder="airline name" th:value="${searchString}" autofocus>
+                               </div>
+                                    <button id="btnSubmit" type="submit" method="get" action="/searchFlight" style="margin-top:0rem; font-size: 1.5rem; padding: 0.6rem 3rem;"
+                                            class="btn btn-outline-success">Search Flight </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- tab content -->
+        </div>
+        <!-- tabbing -->
+    </div>
+</div>
+<!-- home section starts  -->
+
+<section class="home" id="home">
+    <div class="searchFligt">
+        <span style="font-size: 2em; color: darkolivegreen; text-align: center">
+            <span style="color: darkolivegreen"><h1 style="text-align: center">Available Flights</h1></span>
+        </span>
+    </div>
+    <br>
+    <div style="font-size: 1em">
+        <table class="card-table table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Flight Number</th>
+                <th scope="col">Number oF Seat</th>
+                <th scope="col">Airline</th>
+                <th scope="col">DepartureAirport</th>
+                <th scope="col">ArrivaleAirport</th>
+                <th scope="col">Departuretime</th>
+                <th scope="col">ArrivalTime</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="flight,iterStat:${flights}">
+<!--                <th scope="row" th:text="${iterStat.count}+${'.'}"></th>-->
+                <td th:text="${flight.number}"></td>
+                <td th:text="${flight.numberOfSeats}"></td>
+                <td th:text="${flight.airline.getName()}"></td>
+                <td th:text="${flight.departureAirport.getName()}"></td>
+                <td th:text="${flight.arrivalAirport.getName()}"></td>
+                <td th:text="${flight.departureTime}"></td>
+                <td th:text="${flight.arrivalTime}"></td>
+
+                <!--                <td><button class=" btn btn-lg btn-primary" >View Flight Details</button></td>-->
+                <td>
+                    <a  class=" btn btn-lg btn-primary" th:href="@{'/bookFlight/booking/{flightId}'(flightId=${flight.id})}">Book flight</a></td>
+                </td>
+            </tr>
+            <tr th:if="${flightsCount< 1}">
+                <td colspan="8" th:align="center">No flights found</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
+</section>
+
+<!-- home section ends -->
+
+<!-- book section starts  -->
+
+<!--<section class="book" id="book">-->
+
+<!--    <h1 class="heading">-->
+<!--        <span>b</span>-->
+<!--        <span>o</span>-->
+<!--        <span>o</span>-->
+<!--        <span>k</span>-->
+<!--        <span class="space"></span>-->
+<!--        <span>n</span>-->
+<!--        <span>o</span>-->
+<!--        <span>w</span>-->
+<!--    </h1>-->
+
+<!--    <div class="row">-->
+
+<!--        <div class="image">-->
+<!--            <img src="images/book-img.svg" alt="">-->
+<!--        </div>-->
+
+<!--        <form action="">-->
+<!--            <div class="inputBox">-->
+<!--                <h3>where to</h3>-->
+<!--                <input type="text" placeholder="place name">-->
+<!--            </div>-->
+<!--            <div class="inputBox">-->
+<!--                <h3>how many</h3>-->
+<!--                <input type="number" placeholder="number of guests">-->
+<!--            </div>-->
+<!--            <div class="inputBox">-->
+<!--                <h3>arrivals</h3>-->
+<!--                <input type="date">-->
+<!--            </div>-->
+<!--            <div class="inputBox">-->
+<!--                <h3>leaving</h3>-->
+<!--                <input type="date">-->
+<!--            </div>-->
+<!--            <input type="submit" class="btn" value="book now">-->
+<!--        </form>-->
+
+<!--    </div>-->
+
+<!--</section>-->
+
+<section class="footer">
+
+<h1 class="credit"> all rights reserved! </h1>
+</section>
+
+</section>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script type="text/javascript" th:src="@{/flight_assets/script.js}"></script>
+
+</body>
+</html>
